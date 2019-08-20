@@ -1,0 +1,2 @@
+image_name=movie_analyst_db
+version_tag=0.01
