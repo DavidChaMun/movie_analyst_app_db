@@ -25,6 +25,7 @@ docker exec -it my_db0 bash
 
 #connect remotely to db
 mysql --protocol=tcp --host=$(docker exec -it my_db0 bash -c 'IP=$(hostname -i); echo $IP') --port=3306 --user=applicationuser -p
+mysql --protocol=tcp --host=172.17.0.2 --port=3306 --user=applicationuser -p
 
 #run a sql file in terminal
 #the temp.cnf file must contain user and password

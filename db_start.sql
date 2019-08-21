@@ -1,6 +1,6 @@
 CREATE DATABASE movie_db;
-CREATE USER 'applicationuser'@'%' IDENTIFIED BY 'applicationuser';
-GRANT SELECT ON movie_db.* TO 'applicationuser';
+CREATE USER 'placeholder'@'%' IDENTIFIED BY 'placeholder';
+GRANT SELECT ON movie_db.* TO 'placeholder';
 
 CREATE TABLE movie_db.publication (name VARCHAR(255) PRIMARY KEY, avatar VARCHAR(21));
 CREATE TABLE movie_db.reviewer (name VARCHAR(255) PRIMARY KEY, avatar VARCHAR(255), publication VARCHAR(255), FOREIGN KEY (publication) REFERENCES publication(name) ON DELETE CASCADE);
