@@ -6,6 +6,8 @@ docker build -t ramp-app-db .
 
 #create container
 docker run --name my_db0 -e MYSQL_ROOT_PASSWORD=sherlock -d ramp-app-db
+docker run --name malyst_apic01 -e DB_HOST=$(docker exec -it movie_db_c01 bash -c 'IP=$(hostname -i); echo $IP') -d movie_analyst_api
+docker run --name malyst_uic01 -e BACK_HOST=$(docker exec -it malyst_apic01 bash -c 'IP=$(hostname -i); echo $IP') -d movie_analyst_ui
 
 #copy file from host to docker
 docker cp init.sh my_db0:/
@@ -19,6 +21,7 @@ docker exec my_db0 '/init.sh'
 
 # Get the ip of the running container
 docker exec -it my_db0 bash -c 'IP=$(hostname -i); echo $IP'
+docker exec -it movie_db_c01 bash -c 'IP=$(hostname -i); echo $IP'
 
 # exec bash inside container
 docker exec -it my_db0 bash
