@@ -1,5 +1,5 @@
 #!/bin/bash
-
+cd $(dirname $0)
 helpFunction()
 {
    echo ""
@@ -28,8 +28,8 @@ fi
 # Begin script in case all parameters are correct
 
 # Read name of image and version from buffer
-image_name=`sed -n -e '1 s/image_name=// p' buffer.txt`
-version_tag=`sed -n -e '2 s/version_tag=// p' buffer.txt`
+image_name=`sed -n -e '1 s/image_name=// p' ./Buffers/buffer.txt`
+version_tag=`sed -n -e '2 s/version_tag=// p' ./Buffers/buffer.txt`
 
 
 docker run --name $container_name -e MYSQL_ROOT_PASSWORD=$root_password -d $image_name:$version_tag
@@ -44,6 +44,6 @@ else
     host_dir=$(docker exec -it $temp bash -c 'IP=$(hostname -i); echo $IP')
     host_dir=$(echo $host_dir | sed -e 's/\n//g')
     host_dir=$(echo $host_dir | sed -e 's/\r//g')
-    sed -i "$ a$container_name:$host_dir:3306" buffer.txt
+    sed -i "$ a$container_name:$host_dir:3306" ./Buffers/buffer.txt
     echo "$container_name its now listening on $host_dir:3306"
 fi

@@ -1,5 +1,5 @@
 #!/bin/bash
-
+cd $(dirname $0)
 helpFunction()
 {
     echo ""
@@ -40,8 +40,8 @@ sed -i "3 s/.*.*/GRANT SELECT ON movie_db.* TO '"$ru_username"';/" db_start.sql
 docker build -t $image_name:$version_tag .
 echo "Docker image built"
 
-source clean.sh
+source ./Buffers/clean.sh
 #Write parameters to buffer file
-sed -i "1c\image_name=$image_name" buffer.txt
-sed -i "2c\version_tag=$version_tag" buffer.txt 
+sed -i "1c\image_name=$image_name" ./Buffers/buffer.txt
+sed -i "2c\version_tag=$version_tag" ./Buffers/buffer.txt
 echo "buffer updated"

@@ -1,5 +1,5 @@
 #!/bin/bash
-
+cd $(dirname $0)
 helpFunction()
 {
    echo ""
@@ -28,9 +28,9 @@ then
 fi
 
 # Begin script in case all parameters are correct
-chmod +x create_docker_image.sh 
-chmod +x run_new_container.sh
+chmod +x /Docker_image/create_docker_image.sh 
+chmod +x /Docker_image/run_new_container.sh
 
-./create_docker_image.sh -n movie_analyst_db -t 0.02 -u $app_username -s $app_password
-./run_new_container.sh -n movie_db_c01 -p $root_password 
+./Docker_image/create_docker_image.sh -n movie_analyst_db -t 0.02 -u $app_username -s $app_password
+./Docker_image/run_new_container.sh -n movie_db_c01 -p $root_password 
 echo "App can now query wity user $app_username"
